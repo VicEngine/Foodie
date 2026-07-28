@@ -1,29 +1,30 @@
-import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native'
+import { StyleSheet, Text, View, Image, ImageBackground, TouchableOpacity } from 'react-native'
 import React from 'react'
+import Bgg from '../components/Bgg'
+import Downbagg from '../components/Downbagg'
 
 const Landingpage = () => {
   return (
     <View style={styles.container}>
-      <ImageBackground>
-        <View style={styles.step1}>
-          <Image source={require('../assets/images/Ellipse3.png')} />
-        </View>
-        <View style={styles.step2}>
-          <Image source={require('../assets/images/Ellipse2.png')} />
-        </View>
-        <View style={styles.step3}>
-          <Image source={require('../assets/images/Ellipse1.png')} />
-        </View>
-      </ImageBackground>
-      <View style={styles.step4}>
+      <Bgg />
+      <View style={styles.step1}>
         <Image source={require('../assets/images/bbg1.png')} />
       </View>
-      <View style={styles.step5}>
+      <View style={styles.step2}>
         <Text style={styles.title}>
           Your Food, Lightning Fast
         </Text>
-        <Image source={require('../assets/images/bbg2.png')}/>
+        <Image source={require('../assets/images/bbg2.png')} />
       </View>
+
+      <TouchableOpacity style={styles.step3}>
+        <View style={styles.Substep3}>
+        </View>
+        <Text style={styles.title1}>Get Started</Text>
+      </TouchableOpacity>
+
+      <Downbagg />
+
     </View>
   )
 }
@@ -35,37 +36,49 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF'
   },
+
   step1: {
-    position: 'relative',
-    right: 8
-  },
-  step2: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: -5,
-  },
-  step3: {
-    position: 'absolute',
-    top: 14,
-    bottom: 0,
-    left: -5,
-  },
-  step4: {
     transform: [{
       translateY: 30,
     }],
     alignItems: 'center'
   },
-  step5:{
-    marginTop:50,
-    flexDirection:'row',
-    alignItems:'center'
+  step2: {
+    marginTop: 50,
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   title: {
     fontFamily: 'OpenSans',
     fontSize: 24,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#B72245',
+    paddingLeft: 20,
   },
+  step3: {
+    width: "80%",
+    height: 70,
+    borderWidth: 2,
+    borderColor: "#B72245",
+    alignSelf: 'center',
+    marginTop: 40,
+    borderRadius: 30,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 25,
+    gap: 30
+  },
+  Substep3: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: "#F7931E"
+  },
+  title1: {
+    fontFamily: 'Open Sans',
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: "#000000"
+  },
+
 })
