@@ -2,8 +2,10 @@ import { StyleSheet, Text, View, Image, ImageBackground, TouchableOpacity } from
 import React from 'react'
 import Bgg from '../components/Bgg'
 import Downbagg from '../components/Downbagg'
+import { useNavigation } from '@react-navigation/native'
 
 const Landingpage = () => {
+  const navigation = useNavigation()
   return (
     <View style={styles.container}>
       <Bgg />
@@ -17,7 +19,7 @@ const Landingpage = () => {
         <Image source={require('../assets/images/bbg2.png')} />
       </View>
 
-      <TouchableOpacity style={styles.step3}>
+      <TouchableOpacity onPress={() => navigation.navigate('Signup')} style={styles.step3}>
         <View style={styles.Substep3}>
         </View>
         <Text style={styles.title1}>Get Started</Text>
