@@ -1,8 +1,10 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, ScrollView } from 'react-native'
 import React from 'react'
 import Bgg from '../components/Bgg'
-
+import { useNavigation } from '@react-navigation/native'
+import Location from '../components/Location'
 const Signup = () => {
+    const navigation = useNavigation()
 
     return (
         <View style={styles.container}>
@@ -15,14 +17,8 @@ const Signup = () => {
                     <View style={styles.step2Sub1} />
                     <Text style={styles.title}>whats your address?</Text>
                 </TouchableOpacity>
-                <View style={styles.step3Con}>
-                    <View style={styles.step3}>
-                        <Image source={require('../assets/icons/Star1.png')} />
-                    </View>
-                    <Text style={styles.title2}>
-                        Use current location
-                    </Text>
-                </View>
+
+                <Location />
                 <View style={styles.step4}>
                     <View style={styles.step5Con}>
                         <View style={styles.step5}>
@@ -59,7 +55,7 @@ const Signup = () => {
                             </View>
                         </View>
 
-                        <TouchableOpacity activeOpacity={0.6} style={styles.step8}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Product')} activeOpacity={0.6} style={styles.step8}>
                             <Text style={styles.title4}>
                                 Continue
                             </Text>
@@ -80,7 +76,7 @@ const Signup = () => {
 
                     </View>
                     <View style={styles.step10}>
-                        <TouchableOpacity style={styles.substep10} >
+                        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.substep10} >
                             <Image source={require('../assets/icons/leftArrow.png')} />
                             <Text style={styles.back}>Back</Text>
                         </TouchableOpacity>
@@ -140,28 +136,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#555252'
     },
-    step3Con: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 20,
-        gap: 15
-    },
-    step3: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        borderWidth: 1,
-        borderColor: "#B72245",
-        alignItems: "center",
-        justifyContent: 'center'
-    },
-    title2: {
-        fontFamily: 'Inter',
-        color: "#b72245",
-        fontSize: 14,
-        fontWeight: 'medium'
-    },
+
     step4: {
         flex: 1,
         backgroundColor: "#FFFFFF",
@@ -330,8 +305,8 @@ const styles = StyleSheet.create({
         color: '#000000',
         marginTop: 30
     },
-    step11:{
-        flex:1,
-        justifyContent:'flex-end',
+    step11: {
+        flex: 1,
+        justifyContent: 'flex-end',
     },
 })
