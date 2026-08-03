@@ -1,8 +1,10 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ImageBackground } from 'react-native'
 import React from 'react'
 import Bagg2 from '../components/Bagg2'
 import Location from '../components/Location'
+import { useNavigation } from '@react-navigation/native'
 const Product = () => {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
 
@@ -10,14 +12,20 @@ const Product = () => {
             <Image source={require('../assets/images/bbg3.png')} style={styles.bbg} />
             <Text style={styles.title}>Bringing Food to Your Doorstep</Text>
 
-            <TouchableOpacity style={styles.step2}>
+            <TouchableOpacity onPress={()=> navigation.navigate('Deliveryaddress')} style={styles.step2}>
                 <View style={styles.step2Sub}>
                 </View>
                 <View style={styles.step2Sub1} />
                 <Text style={styles.title1}>whats your address?</Text>
             </TouchableOpacity>
             <Location textStyles={{ color: '#fff' }} />
-            <Image source={require('../assets/images/bgg4.png')}style={styles.step3}/>
+            <ImageBackground  resizeMode='cover' source={require('../assets/images/bgg4.png')} style={styles.step3}>
+              
+
+                
+                    <Image source={require('../assets/images/pic6.png')} style={styles.pic6} />
+                
+            </ImageBackground>
         </View>
     )
 }
@@ -26,7 +34,7 @@ export default Product
 
 const styles = StyleSheet.create({
     container: {
-        height:'70%',
+        height: '70%',
         backgroundColor: '#B72245'
     },
     bbg: {
@@ -74,8 +82,11 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#555252'
     },
-    step3:{
-        alignSelf:'center',
-        width:'100%',
+    step3: {
+flex: 1,
+
+    },
+    pic6:{
+        resizeMode: 'contain',
     },
 })

@@ -3,6 +3,8 @@ import React from 'react'
 import Bgg from '../components/Bgg'
 import { useNavigation } from '@react-navigation/native'
 import Location from '../components/Location'
+import Back from '../components/Back'
+
 const Signup = () => {
     const navigation = useNavigation()
 
@@ -38,14 +40,14 @@ const Signup = () => {
                         </View>
 
                         <View style={styles.step7Con}>
-                            <View style={styles.step7}>
+                            <TouchableOpacity style={styles.step7}>
 
                                 <Image source={require('../assets/icons/nig.png')} />
                                 <Text>
                                     +234
                                 </Text>
                                 <Image source={require('../assets/icons/downArrow.png')} />
-                            </View>
+                            </TouchableOpacity>
                             <View style={styles.step7Hold}>
                                 <TextInput
                                     placeholder='Phone Number'
@@ -76,10 +78,7 @@ const Signup = () => {
 
                     </View>
                     <View style={styles.step10}>
-                        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.substep10} >
-                            <Image source={require('../assets/icons/leftArrow.png')} />
-                            <Text style={styles.back}>Back</Text>
-                        </TouchableOpacity>
+                       <Back onPress={() => navigation.goBack()} />
                         <Text style={styles.title6}>Other methods</Text>
                     </View>
                     <View style={styles.step11}>
@@ -280,17 +279,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         marginTop: 20
     },
-    substep10: {
-        position: 'absolute',
-        left: 0,
-        alignItems: 'center',
-    },
-    back: {
-        fontSize: 12,
-        fontWeight: 'medium',
-        fontFamily: 'Inter',
-        color: "#040404"
-    },
+   
     title6: {
         fontSize: 13,
         fontFamily: 'Inter',
