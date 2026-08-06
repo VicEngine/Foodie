@@ -13,7 +13,7 @@ const Signup = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Bgg />
                 <Image source={require('../assets/images/bbg3.png')} style={styles.step1} />
-                <TouchableOpacity style={styles.step2}>
+                <TouchableOpacity onPress={()=> navigation.navigate('Checkout')} style={styles.step2}>
                     <View style={styles.step2Sub}>
                     </View>
                     <View style={styles.step2Sub1} />
