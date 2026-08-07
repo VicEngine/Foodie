@@ -69,7 +69,7 @@ const Signup = () => {
                             <View style={styles.line} />
                         </View>
 
-                        <TouchableOpacity activeOpacity={0.6} style={styles.step9}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Bugerking')} activeOpacity={0.6} style={styles.step9}>
                             <Image source={require('../assets/icons/google.png')} style={styles.googleIcon} />
                             <Text style={styles.title5}>
                                 Google
@@ -78,7 +78,7 @@ const Signup = () => {
 
                     </View>
                     <View style={styles.step10}>
-                       <Back onPress={() => navigation.goBack()} />
+                       <Back onPress={() => navigation.goBack()}/>
                         <Text style={styles.title6}>Other methods</Text>
                     </View>
                     <View style={styles.step11}>

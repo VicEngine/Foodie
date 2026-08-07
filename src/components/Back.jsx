@@ -1,11 +1,11 @@
-import { StyleSheet, Text,TouchableOpacity,Image } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 
-const Back = ({ onPress }) => {
+const Back = ({ onPress, style, textStyles }) => {
     return (
-        <TouchableOpacity onPress={onPress} style={styles.substep10} >
+        <TouchableOpacity onPress={onPress} style={[styles.substep10, style]}>
             <Image source={require('../assets/icons/leftArrow.png')} />
-            <Text style={styles.back}>Back</Text>
+            <Text style={[styles.back, textStyles]}>Back</Text>
         </TouchableOpacity>
     )
 }
