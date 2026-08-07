@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ImageBackground, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ImageBackground, ScrollView, Alert } from 'react-native'
 import React from 'react'
 import Bagg2 from '../components/Bagg2'
 import Location from '../components/Location'
@@ -6,8 +6,27 @@ import { useNavigation } from '@react-navigation/native'
 import Bggtop from '../components/Bggtop'
 import Addressbot from '../components/Addressbot'
 import Back from '../components/Back'
+import { useState } from 'react'
 const Product = () => {
     const navigation = useNavigation();
+    const [chai, setChai] = useState(false)
+    const [dominos, setDominos] = useState(false)
+    const [kfc, setKfc] = useState(false)
+    const [buger, setBuger] = useState(false)
+
+    const handlePress = (id) => {
+        console.log('Pressed item with id:', id);
+        if (id === '1') {
+            Alert.alert('Coming Soon');
+        } else if (id === '2') {
+            Alert.alert('Coming Soon')
+        } else if (id === '3') {
+            Alert.alert('Coming Soon')
+        } else if (id === '4') {
+            navigation.navigate('Bugerking')
+        }
+    }
+
     const Data = [
         {
             id: '1',
@@ -46,62 +65,128 @@ const Product = () => {
         },
 
     ]
+    const Stores = [
+        {
+            id: '1',
+            image: require('../assets/images/pic12.png'),
+            title: 'Chicken Republic',
+            rate: '93%',
+            pic: require('../assets/icons/like.gif'),
+
+        },
+        {
+            id: '2',
+            image: require('../assets/images/pic13.png'),
+            title: 'The Place',
+            rate: '95%',
+            pic: require('../assets/icons/like1.png'),
+
+        },
+        {
+            id: '3',
+            image: require('../assets/images/pic5.png'),
+            title: 'KFC',
+            rate: '92%',
+            pic: require('../assets/icons/like1.png'),
+
+        },
+        {
+            id: '4',
+            image: require('../assets/images/pic4.png'),
+            title: 'Sweet Sensantion',
+            rate: '93%',
+            pic: require('../assets/icons/like.gif'),
+
+        },
+        {
+            id: '5',
+            image: require('../assets/images/pic3.png'),
+            title: 'Burger King',
+            rate: '91%',
+            pic: require('../assets/icons/like1.png'),
+        },
+        {
+            id: '6',
+            image: require('../assets/images/pic2.png'),
+            title: 'Yakoto Abula Joint',
+            rate: '91%',
+            pic: require('../assets/icons/like.gif'),
+
+        },
+
+    ]
     const junks = ({ item }) => (
-        <View style={styles.step2}>
+        <TouchableOpacity onPress={() => handlePress(item.id)} style={styles.step2}>
             <Image source={item.image} />
             <Text style={styles.title1}>{item.title}</Text>
-        </View>
+        </TouchableOpacity>
     )
     const food = ({ item }) => (
         <View style={styles.step3}>
             <Text style={styles.title2}>{item.title}</Text>
             <Image source={item.image} style={styles.food} />
             <Text style={styles.title3}>{item.price}</Text>
-            <TouchableOpacity activeOpacity={0.7} style={styles.step4}>
+            <TouchableOpacity onPress={() => navigation.navigate('Doublecheese', { image: item.image, title: item.title, price: item.price })} activeOpacity={0.7} style={styles.step4}>
                 <Image source={require('../assets/images/cross.png')} />
             </TouchableOpacity>
+
+        </View>
+    )
+
+    const chicken = ({ item }) => (
+        <View>
+            <Image source={item.image} />
+            <Text style={styles.title5}>{item.title}</Text>
+            <View style={styles.step6}>
+                <Image source={item.pic} />
+                <Text style={styles.title4}>{item.rate}</Text>
+            </View>
         </View>
     )
     return (
         <View style={styles.container}>
             <ScrollView>
-                
-            <View style={styles.step1}>
-                <Bagg2 />
-                <Bggtop />
-                <Text style={styles.title}>Bringing Food to Your Doorstep</Text>
-                <Addressbot onPress={() => navigation.navigate('Deliveryaddress')} />
-                <Location textStyles={{ color: '#fff' }} />
-            </View>
-            <View>
-                <FlatList
-                    data={Data}
-                    renderItem={junks}
-                    keyExtractor={(item) => item.id}
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                />
-            </View>
-            <View>
-                <FlatList
-                    data={Burger}
-                    renderItem={food}
-                    keyExtractor={(item) => item.id}
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                />
-            </View>
-            <View style={styles.backWrapper}>
-                <Back style={styles.back} onPress={() => navigation.goBack()} />
-            </View>
+
+                <View style={styles.step1}>
+                    <Bagg2 />
+                    <Bggtop />
+                    <Text style={styles.title}>Bringing Food to Your Doorstep</Text>
+                    <Addressbot onPress={() => navigation.navigate('Deliveryaddress')} />
+                    <Location textStyles={{ color: '#fff' }} />
+                </View>
+                <View>
+                    <FlatList
+                        data={Data}
+                        renderItem={junks}
+                        keyExtractor={(item) => item.id}
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                    />
+                </View>
+                <View>
+                    <FlatList
+                        data={Burger}
+                        renderItem={food}
+                        keyExtractor={(item) => item.id}
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                    />
+                </View>
+                <View style={styles.backWrapper}>
+                    <Back style={styles.back} onPress={() => navigation.goBack()} />
+                </View>
                 <Image source={require('../assets/images/stor.png')} style={styles.step5} />
-            <View>
-                <Image source={require('../assets/images/pic12.png')}/>
-           <Text>Chicken Republic</Text>
-           <Image source={require('../assets/icons/like.gif')}/>
-           <Text>95%</Text>
-            </View>
-            
+
+
+                <FlatList
+                    data={Stores}
+                    renderItem={chicken}
+                    keyExtractor={(item) => item.id}
+                    scrollEnabled={false}
+                    numColumns={2}
+                    columnWrapperStyle={styles.rap}
+                />
+
             </ScrollView>
         </View>
     )
@@ -198,8 +283,41 @@ const styles = StyleSheet.create({
         left: 15,
         top: 0,
     },
-    step5:{
-        marginTop:30,
-        marginLeft:20
+    step5: {
+        marginTop: 30,
+        marginLeft: 20
     },
+
+    step6: {
+        flexDirection: 'row',
+        alignItems: "center",
+        gap: 5,
+        marginTop: 5
+    },
+    title5: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        fontFamily: 'Inter'
+    },
+
+    title4: {
+        fontSize: 15,
+        fontWeight: 'semibold',
+        fontFamily: 'Inter'
+    },
+    pic: {
+        elevation: 2,
+        shadowOpacity: 0.3,
+        shadowOffset: {
+            width: 0.3,
+            height: 0.3
+        },
+
+    },
+    rap: {
+        justifyContent: 'space-between',
+        marginBottom: 15,
+        paddingHorizontal: 15
+    },
+
 })

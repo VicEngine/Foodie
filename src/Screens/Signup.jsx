@@ -69,7 +69,7 @@ const Signup = () => {
                             <View style={styles.line} />
                         </View>
 
-                        <TouchableOpacity onPress={() => navigation.navigate('Bugerking')} activeOpacity={0.6} style={styles.step9}>
+                        <TouchableOpacity activeOpacity={0.6} style={styles.step9}>
                             <Image source={require('../assets/icons/google.png')} style={styles.googleIcon} />
                             <Text style={styles.title5}>
                                 Google

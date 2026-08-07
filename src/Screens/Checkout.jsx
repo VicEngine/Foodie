@@ -15,7 +15,13 @@ const Checkout = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title1}>Checkout</Text>
+      <View style={styles.header}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}>
+          <Image source={require('../assets/icons/cut.png')} style={styles.cut} />
+        </TouchableOpacity>
+        <Text style={styles.title1}>Checkout</Text>
+      </View>
       <View style={styles.step1}>
       </View>
       <Text style={styles.title2}>Delivery Address</Text>
@@ -31,18 +37,19 @@ const Checkout = () => {
       </View>
 
       <Text style={styles.title2}>PAYMENT METHOD</Text>
-      <View style={styles.step3}>
 
+      <TouchableOpacity activeOpacity={0.7} style={styles.step3}>
+        <Image source={require('../assets/images/pic14.png')} />
         <Text style={styles.title4}>*** **** **** 5967</Text>
-      </View>
+      </TouchableOpacity>
 
-      <View style={styles.step3}>
-
+      <TouchableOpacity style={styles.step3}>
+        <Image source={require('../assets/images/pic15.png')} />
         <Text style={styles.title4}>wilson.casper@bernice.info</Text>
-      </View>
+      </TouchableOpacity>
 
       <View style={styles.step3}>
-
+        <Image source={require('../assets/images/pic16.png')} />
         <Text style={styles.title4}>*** **** **** 3461</Text>
       </View>
       <View style={styles.step4Con}>
@@ -51,13 +58,16 @@ const Checkout = () => {
         </TouchableOpacity>
       </View>
       <Modal visible={payment} animationType='fade' onRequestClose={() => setPayment(false)} transparent={true}>
+
         <View onPress={() => setPayment(false)} style={styles.Overlay}>
+
           <Pressable style={StyleSheet.absoluteFill} onPress={() => setPayment(false)}>
             <BlurView intensity={20} tint='light' style={StyleSheet.absoluteFill} />
           </Pressable>
+
           <View style={styles.step5}>
             <View style={styles.step6}>
-
+              <Image source={require('../assets/icons/check.png')} style={styles.check} />
             </View>
             <Text style={styles.title6}>Your order is succeccfully.</Text>
             <Text style={styles.title7}>You can track the delivery in the {'\n'} "Orders" section.</Text>
@@ -83,12 +93,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     padding: 20,
   },
+  header: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginTop: 25,
+  },
+
   title1: {
-    marginTop: 20,
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 20,
     fontWeight: 'bold',
-    fontFamily: 'Inter'
+    fontFamily: 'Inter',
+    position: 'absolute',
+    left: 50,
+    right: 50
   },
   title2: {
     marginTop: 20,
@@ -122,7 +140,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#e4e1e1',
     marginTop: 20,
     paddingHorizontal: 15,
-
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 18
   },
   title3: {
     fontSize: 15,
@@ -189,8 +209,14 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 0.2, height: 0.2
     },
-    shadowOpacity: 0.2
+    shadowOpacity: 0.2,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
+  check: {
+    tintColor: "#F7931E"
+  },
+
   title6: {
     width: 150,
     fontSize: 20,

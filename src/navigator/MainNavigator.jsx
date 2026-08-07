@@ -7,6 +7,7 @@ import Product from '../Screens/Product';
 import Deliveryaddress from '../Screens/Deliveryaddress';
 import Checkout from '../Screens/Checkout';
 import Bugerking from '../Screens/Bugerking';
+import Doublecheese from '../Screens/Doublecheese';
 const MainNavigator = () => {
     const Stack = createNativeStackNavigator();
     return (
@@ -17,6 +18,7 @@ const MainNavigator = () => {
             <Stack.Screen name='Deliveryaddress' component={Deliveryaddress} /> 
             <Stack.Screen name='Checkout' component={Checkout} /> 
             <Stack.Screen name='Bugerking' component={Bugerking} /> 
+            <Stack.Screen name='Doublecheese' component={Doublecheese} /> 
         </Stack.Navigator>
     )
 }

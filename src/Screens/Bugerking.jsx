@@ -5,7 +5,9 @@ import Bggtop from '../components/Bggtop'
 import Location from '../components/Location'
 import Addressbot from '../components/Addressbot'
 import Back from '../components/Back'
+import { useNavigation } from '@react-navigation/native'
 const Bugerking = () => {
+    const navigation = useNavigation()
     const Data = [
         {
             id: '1',
@@ -40,7 +42,7 @@ const Bugerking = () => {
             id: '2',
             image: require('../assets/images/pngwing 5.png'),
             title: 'Veggie Burger',
-            price:'#4,000'
+            price: '#4,000'
         },
 
     ]
@@ -55,7 +57,7 @@ const Bugerking = () => {
             <Text style={styles.title2}>{item.title}</Text>
             <Image source={item.image} style={styles.pngwing} />
             <Text style={styles.title3}>{item.price}</Text>
-            <TouchableOpacity activeOpacity={0.7} style={styles.step4}>
+            <TouchableOpacity onPress={() => navigation.navigate('Doublecheese', { image: item.image, title: item.title, price: item.price })} activeOpacity={0.7} style={styles.step4}>
                 <Image source={require('../assets/images/cross.png')} />
             </TouchableOpacity>
         </View>
@@ -75,17 +77,19 @@ const Bugerking = () => {
                     renderItem={junks}
                     keyExtractor={(item) => item.id}
                     horizontal={true}
+                    showsHorizontalScrollIndicator={false}
                 />
             </View>
-            <View style={styles.backWrapper}>
-                <Back style={{ position: 'absolute', left: -5, top: 12 }} />
-            </View>
+
+            <Back onPress={() => navigation.goBack()} style={{ position: 'absolute', bottom: 20 }} />
+
             <View>
                 <FlatList
                     data={Burger}
                     renderItem={food}
                     keyExtractor={(item) => item.id}
                     horizontal={true}
+                    showsHorizontalScrollIndicator={false}
                 />
             </View>
         </View>
@@ -169,8 +173,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    backWrapper: {
-        marginTop: 12,
-        alignSelf: 'flex-start',
-    },
+
 })
