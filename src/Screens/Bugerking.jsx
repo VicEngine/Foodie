@@ -34,15 +34,39 @@ const Bugerking = () => {
     const Burger = [
         {
             id: '1',
-            image: require('../assets/images/pngwing 4.png'),
+            image: require('../assets/images/Burger1.jpg'),
             title: 'Double cheese\nBurger',
             price: '#6,000'
         },
         {
             id: '2',
-            image: require('../assets/images/pngwing 5.png'),
+            image: require('../assets/images/pngwing 4.jpg'),
+            title: 'Veggie Burger',
+            price: '#8,000'
+        },
+        {
+            id: '3',
+            image: require('../assets/images/Burger5.jpg'),
             title: 'Veggie Burger',
             price: '#4,000'
+        },
+        {
+            id: '4',
+            image: require('../assets/images/Burger3.png'),
+            title: 'Veggie Burger',
+            price: '#5,000'
+        },
+        {
+            id: '5',
+            image: require('../assets/images/Burger8.png'),
+            title: 'Veggie Burger',
+            price: '#7,000'
+        },
+        {
+            id: '6',
+            image: require('../assets/images/Burger9.png'),
+            title: 'Veggie Burger',
+            price: '#7,500'
         },
 
     ]
@@ -141,8 +165,8 @@ const styles = StyleSheet.create({
         marginLeft: 55
     },
     title2: {
-        marginTop: 15,
-        marginLeft: 30,
+       
+        padding:20,
         fontSize: 15,
         color: '#fff',
         fontWeight: 'bold',
@@ -150,13 +174,15 @@ const styles = StyleSheet.create({
     },
     pngwing: {
         position: 'absolute',
-        left: -50,
-        bottom: 15
+        left: -40,
+        bottom: 35,
+        width:178,
+        height:178
     },
     title3: {
         position: 'absolute',
-        bottom: 20,
-        left: 30,
+        bottom: 10,
+        left: 35,
         color: '#FFF',
         fontWeight: 'bold',
         fontFamily: 'Inter',

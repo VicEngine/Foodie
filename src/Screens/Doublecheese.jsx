@@ -56,56 +56,63 @@ const Doublecheese = () => {
             <View style={styles.step1}>
                 <Text style={styles.title}>{title || 'Double Cheese'}{title ? '' : '\nBurger'}</Text>
                 <Text style={styles.title1}>Burger King | Deliver - {price || '#2500'}</Text>
+
                 {image ? <Image source={image} style={styles.foodImage} /> : null}
+
             </View>
             <View style={styles.Card1}>
-                <View style={styles.cardContainer}>
 
-                    <Text style={styles.heading}>Description</Text>
-                    <Text style={styles.description}>
-                        Enjoy the Burger King Double Cheeseburger: two flame-grilled beef
-                        patties layered with melted American cheese, topped with fresh lettuce,
-                        tomato, pickles, and creamy mayo, all nestled in a toasted sesame seed
-                        bun. It's a classic, deliciously satisfying burger experience.
-                    </Text>
 
-                    <View>
-                        <FlatList
-                            data={Burg}
-                            renderItem={burg}
-                            keyExtractor={(item) => item.id}
-                            horizontal
-                            showsHorizontalScrollIndicator={false}
-                        />
-                    </View>
-                    <View style={styles.Quantitycon}>
-                        <View style={styles.actionRow}>
-                            {/* Quantity Selector */}
-                            <View style={styles.quantityPill}>
-                                <TouchableOpacity
-                                    style={styles.counterBtn}
-                                    onPress={() => setQuantity(Math.max(1, quantity - 1))}
-                                >
-                                    <Text style={styles.counterBtnText}>-</Text>
-                                </TouchableOpacity>
+                <Text style={styles.heading}>Description</Text>
+                <Text style={styles.description}>
+                    Enjoy the Burger King Double Cheeseburger: two flame-grilled beef
+                    patties layered with melted American cheese, topped with fresh lettuce,
+                    tomato, pickles, and creamy mayo, all nestled in a toasted sesame seed
+                    bun. It's a classic, deliciously satisfying burger experience.
+                </Text>
 
-                                <Text style={styles.quantityText}>{quantity}</Text>
+                <View>
+                    <FlatList
+                        data={Burg}
+                        renderItem={burg}
+                        keyExtractor={(item) => item.id}
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                    />
+                </View>
+                <View style={styles.Quantitycon}>
 
-                                <TouchableOpacity
-                                    style={styles.counterBtn}
-                                    onPress={() => setQuantity(quantity + 1)}
-                                >
-                                    <Text style={styles.counterBtnText}>+</Text>
-                                </TouchableOpacity>
-                            </View>
 
-                            {/* Buy Now Button */}
-                            <TouchableOpacity onPress={() => navigation.navigate('Checkout')} style={styles.buyBtn} activeOpacity={0.85}>
-                                <Text style={styles.buyBtnText}>Buy Now</Text>
+                    <View style={styles.actionRow}>
+                        {/* Quantity Selector */}
+                        <View style={styles.quantityPill}>
+                            <TouchableOpacity
+                                style={styles.counterBtn}
+                                onPress={() => setQuantity(Math.max(1, quantity - 1))}
+                            >
+                                <Text style={styles.counterBtnText}>-</Text>
+                            </TouchableOpacity>
+
+                            <Text style={styles.quantityText}>{quantity}</Text>
+
+                            <TouchableOpacity
+                                style={styles.counterBtn}
+                                onPress={() => setQuantity(quantity + 1)}
+                            >
+                                <Text style={styles.counterBtnText}>+</Text>
                             </TouchableOpacity>
                         </View>
+
+                        {/* Buy Now Button */}
+                        <TouchableOpacity onPress={() => navigation.navigate('Checkout')} style={styles.buyBtn} activeOpacity={0.85}>
+                            <Text style={styles.buyBtnText}>Buy Now</Text>
+                        </TouchableOpacity>
+
                     </View>
+
+
                 </View>
+
             </View>
         </View>
     )
@@ -131,8 +138,8 @@ const styles = StyleSheet.create({
     },
     title: {
         marginTop: 35,
-        fontSize: 24,
-        fontWeight: 'black',
+        fontSize: 28,
+        fontWeight: 'bold',
         color: '#fff'
     },
     title1: {
@@ -142,23 +149,22 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     foodImage: {
-        resizeMode: 'contain',        
+        marginTop: 10,
+        width: 227,
+        height: 245
     },
     Card1: {
+        height: "50%",
+        width: '100%',
+        backgroundColor: "#FFF",
+        marginTop: 50,
         flex: 1,
-        justifyContent: 'flex-end'
-    },
-    cardContainer: {
-        backgroundColor: '#ffffff',
+        paddingBottom: 24,
+        padding: 15,
         borderTopLeftRadius: 36,
         borderTopRightRadius: 36,
-        paddingHorizontal: 20,
-        paddingTop: 20,
-        paddingBottom: 24,
-        width: '100%',
-        marginTop: 30,
-        minHeight: 490,
     },
+
     heading: {
         fontSize: 26,
         fontWeight: 'bold',
@@ -173,7 +179,7 @@ const styles = StyleSheet.create({
         marginTop: 15
     },
     Burgcon: {
-        marginTop:50,
+        marginTop: 30,
         paddingHorizontal: 20,
 
     },
@@ -201,7 +207,7 @@ const styles = StyleSheet.create({
     actionRow: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        gap: 30,
     },
     quantityPill: {
         flexDirection: 'row',
@@ -234,13 +240,13 @@ const styles = StyleSheet.create({
     },
     buyBtn: {
         backgroundColor: '#f8931f',
-        borderRadius: 20,
-        paddingVertical: 14,
-        paddingHorizontal: 40,
+        borderRadius: 15,
+        paddingVertical: 8,
+        paddingHorizontal: 20,
         alignItems: 'center',
         justifyContent: 'center',
-        flex: 1,
-        marginLeft: 16,
+
+
     },
     buyBtnText: {
         color: '#ffffff',
