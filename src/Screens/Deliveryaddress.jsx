@@ -1,11 +1,54 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
+import React, { useState } from 'react'
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
 import { useNavigation } from '@react-navigation/native'
+import * as Location from 'expo-location'
 import Back from '../components/Back'
+
 const Deliveryaddress = () => {
     const navigation = useNavigation();
+    const [addressText, setAddressText] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
+
+    const handleUseCurrentLocation = async () => {
+        setLoading(true);
+        setErrorMsg('');
+
+        try {
+            const { status } = await Location.requestForegroundPermissionsAsync();
+
+            if (status !== 'granted') {
+                setErrorMsg('Location permission denied');
+                setLoading(false);
+                return;
+            }
+
+            const currentLocation = await Location.getCurrentPositionAsync({
+                accuracy: Location.Accuracy.High,
+            });
+
+            const geocodedAddress = await Location.reverseGeocodeAsync({
+                latitude: currentLocation.coords.latitude,
+                longitude: currentLocation.coords.longitude,
+            });
+
+            if (geocodedAddress[0]) {
+                const place = geocodedAddress[0];
+                const fullAddress = `${place.street || place.name || ''}, ${place.city || ''}, ${place.region || ''}, ${place.country || ''}`.replace(/, +/g, ', ').replace(/^, |, $/g, '');
+                setAddressText(fullAddress);
+            } else {
+                setAddressText('Unable to find address');
+            }
+        } catch (error) {
+            console.log(error);
+            setErrorMsg('Unable to get your current location');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
@@ -19,22 +62,34 @@ const Deliveryaddress = () => {
                 <View style={styles.step1}>
                     <SimpleLineIcons name="flag" size={24} color="black" />
                     <TextInput
+                        value={addressText}
+                        onChangeText={setAddressText}
                         placeholder='Search for streets, cities, districts.'
                         placeholderTextColor={'#555252'}
                     />
                 </View>
-                <View style={styles.step2}>
+
+                <TouchableOpacity onPress={handleUseCurrentLocation} style={styles.step2}>
                     <View style={styles.step2Sub}>
                         <Image source={require('../assets/icons/Star1.png')} style={styles.Star1} />
                     </View>
                     <Text style={styles.title1}>
                         Use current location
                     </Text>
-                </View>
+                </TouchableOpacity>
+
+                {loading ? (
+                    <View style={styles.loaderContainer}>
+                        <ActivityIndicator size="small" color="#045a31" />
+                        <Text style={styles.loadingText}>Getting your location...</Text>
+                    </View>
+                ) : null}
+
+                {errorMsg ? <Text style={styles.errorText}>{errorMsg}</Text> : null}
 
                 <View style={styles.step3Con}>
                     <View style={styles.step3}>
-                        <Back  onPress={() => navigation.goBack()} />
+                        <Back onPress={() => navigation.goBack()} />
                         <Text style={styles.title2}> or set your location on the map</Text>
                     </View>
                 </View>
@@ -100,13 +155,26 @@ const styles = StyleSheet.create({
     Star1: {
         tintColor: '#045a31',
     },
+    loaderContainer: {
+        marginTop: 16,
+        alignItems: 'center',
+    },
+    loadingText: {
+        marginTop: 6,
+        color: '#045a31',
+    },
+    errorText: {
+        marginTop: 12,
+        color: '#b00020',
+        textAlign: 'center',
+    },
     step3Con: {
         flex: 1,
         justifyContent: 'flex-end',
     },
     step3: {
         flexDirection: 'row',
-        alignItems: 'center', 
+        alignItems: 'center',
     },
     title2: {
         marginLeft: 58,

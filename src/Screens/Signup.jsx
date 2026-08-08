@@ -1,24 +1,42 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, ScrollView } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, ScrollView, } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import Bgg from '../components/Bgg'
 import { useNavigation } from '@react-navigation/native'
 import Location from '../components/Location'
 import Back from '../components/Back'
 
+
+
+
+
+
+
+
 const Signup = () => {
     const navigation = useNavigation()
+    const [phoneNumber, setPhoneNumber] = useState('')
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('blur', () => {
+            setPhoneNumber('')
+        })
+
+        return unsubscribe
+    }, [navigation])
+
+    const isPhoneValid = phoneNumber.replace(/\D/g, '').length === 10
 
     return (
         <View style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Bgg />
                 <Image source={require('../assets/images/bbg3.png')} style={styles.step1} />
-                <TouchableOpacity onPress={()=> navigation.navigate('Checkout')} style={styles.step2}>
+                <View style={styles.step2}>
                     <View style={styles.step2Sub}>
                     </View>
                     <View style={styles.step2Sub1} />
                     <Text style={styles.title}>whats your address?</Text>
-                </TouchableOpacity>
+                </View>
 
                 <Location />
                 <View style={styles.step4}>
@@ -50,14 +68,27 @@ const Signup = () => {
                             </TouchableOpacity>
                             <View style={styles.step7Hold}>
                                 <TextInput
+                                    value={phoneNumber}
+                                    onChangeText={setPhoneNumber}
                                     placeholder='Phone Number'
                                     placeholderTextColor={'#000000'}
                                     style={styles.placeHold}
+                                    keyboardType='number-pad'
+                                    maxLength={10}
                                 />
                             </View>
                         </View>
 
-                        <TouchableOpacity onPress={() => navigation.navigate('Product')} activeOpacity={0.6} style={styles.step8}>
+                        <TouchableOpacity
+                            onPress={() => {
+                                if (isPhoneValid) {
+                                    navigation.navigate('Product')
+                                }
+                            }}
+                            activeOpacity={0.6}
+                            style={[styles.step8, !isPhoneValid && styles.step8Disabled]}
+                            disabled={!isPhoneValid}
+                        >
                             <Text style={styles.title4}>
                                 Continue
                             </Text>
@@ -78,7 +109,7 @@ const Signup = () => {
 
                     </View>
                     <View style={styles.step10}>
-                       <Back onPress={() => navigation.goBack()}/>
+                        <Back onPress={() => navigation.goBack()} />
                         <Text style={styles.title6}>Other methods</Text>
                     </View>
                     <View style={styles.step11}>
@@ -218,6 +249,10 @@ const styles = StyleSheet.create({
         elevation: 6,
 
     },
+    step8Disabled: {
+        backgroundColor: '#C79DA9',
+        elevation: 0,
+    },
     title4: {
         fontSize: 15,
         fontFamily: 'Inter',
@@ -279,7 +314,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         marginTop: 20
     },
-   
+
     title6: {
         fontSize: 13,
         fontFamily: 'Inter',
@@ -299,3 +334,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
 })
+
+
+
+
+
