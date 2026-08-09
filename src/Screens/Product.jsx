@@ -17,11 +17,11 @@ const Product = () => {
     const handlePress = (id) => {
         console.log('Pressed item with id:', id);
         if (id === '1') {
-            Alert.alert('Coming Soon');
+            navigation.navigate('Chaitang');
         } else if (id === '2') {
-            Alert.alert('Coming Soon')
+            navigation.navigate('Dominospizza')
         } else if (id === '3') {
-            Alert.alert('Coming Soon')
+            navigation.navigate('KFC')
         } else if (id === '4') {
             navigation.navigate('Bugerking')
         }

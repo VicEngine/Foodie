@@ -8,6 +8,9 @@ import Deliveryaddress from '../Screens/Deliveryaddress';
 import Checkout from '../Screens/Checkout';
 import Bugerking from '../Screens/Bugerking';
 import Doublecheese from '../Screens/Doublecheese';
+import Chaitang from '../Screens/Chaitang';
+import Dominospizza from '../Screens/Dominospizza';
+import KFC from '../Screens/KFC';
 const MainNavigator = () => {
     const Stack = createNativeStackNavigator();
     return (
@@ -15,10 +18,13 @@ const MainNavigator = () => {
             <Stack.Screen name='Landingpage' component={Landingpage} />
             <Stack.Screen name='Signup' component={Signup} />
             <Stack.Screen name='Product' component={Product} />
-            <Stack.Screen name='Deliveryaddress' component={Deliveryaddress} /> 
-            <Stack.Screen name='Checkout' component={Checkout} /> 
-            <Stack.Screen name='Bugerking' component={Bugerking} /> 
-            <Stack.Screen name='Doublecheese' component={Doublecheese} /> 
+            <Stack.Screen name='Deliveryaddress' component={Deliveryaddress} />
+            <Stack.Screen name='Checkout' component={Checkout} />
+            <Stack.Screen name='Bugerking' component={Bugerking} />
+            <Stack.Screen name='Doublecheese' component={Doublecheese} />
+            <Stack.Screen name='Chaitang' component={Chaitang} />
+            <Stack.Screen name='Dominospizza' component={Dominospizza} />
+            <Stack.Screen name='KFC' component={KFC} />
         </Stack.Navigator>
     )
 }
