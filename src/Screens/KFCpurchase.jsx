@@ -1,11 +1,13 @@
+
 import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList } from 'react-native'
 import React from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import Bggtop from '../components/Bggtop'
 import { useState } from 'react'
 
-const Doublecheese = () => {
-    const navigation = useNavigation()
+const KFCpurchase = () => {
+
+   const navigation = useNavigation()
     const route = useRoute()
     const { image, title, price } = route.params || {}
 
@@ -15,18 +17,18 @@ const Doublecheese = () => {
     const Burg = [
         {
             id: '1',
-            image: require('../assets/images/pngwing 10.png'),
-            title: 'Veggie burger'
+            image: require('../assets/images/KFC6.jpg'),
+            title: 'Margherita'
         },
         {
             id: '2',
-            image: require('../assets/images/pngwing 11.png'),
-            title: 'Chicken Sndwish\nBurger'
+            image: require('../assets/images/KFC8.jpg'),
+            title: 'Pepperoni'
         },
         {
             id: '3',
-            image: require('../assets/images/pngwing 12.png'),
-            title: 'Melgo Special'
+            image: require('../assets/images/KFC9.jpg'),
+            title: 'Quattro Stagioni'
         },
     ]
     const burg = ({ item }) => (
@@ -60,15 +62,13 @@ const Doublecheese = () => {
                 {image ? <Image source={image} style={styles.foodImage} /> : null}
 
             </View>
-            <View style={styles.Card1}>
 
+
+            <View style={styles.Card1}>
 
                 <Text style={styles.heading}>Description</Text>
                 <Text style={styles.description}>
-                    Enjoy the Burger King Double Cheeseburger: two flame-grilled beef
-                    patties layered with melted American cheese, topped with fresh lettuce,
-                    tomato, pickles, and creamy mayo, all nestled in a toasted sesame seed
-                    bun. It's a classic, deliciously satisfying burger experience.
+                Enjoy KFC’s Original Recipe Chicken: tender, juicy chicken hand-breaded and fried to golden perfection with our secret blend of 11 herbs and spices. Featuring a crispy, flavorful crunch on the outside and mouthwatering tenderness on the inside, it’s the ultimate iconic fried chicken experience.
                 </Text>
 
                 <View>
@@ -80,8 +80,8 @@ const Doublecheese = () => {
                         showsHorizontalScrollIndicator={false}
                     />
                 </View>
-                <View style={styles.Quantitycon}>
 
+                <View style={styles.Quantitycon}>
 
                     <View style={styles.actionRow}>
                         {/* Quantity Selector */}
@@ -116,12 +116,13 @@ const Doublecheese = () => {
             </View>
         </View>
     )
+
 }
 
-export default Doublecheese
+export default KFCpurchase
 
 const styles = StyleSheet.create({
-    container: {
+        container: {
         flex: 1,
         backgroundColor: '#B72245'
     },
@@ -180,7 +181,7 @@ const styles = StyleSheet.create({
         marginTop: 8
     },
     Burgcon: {
-        marginTop: 30,
+        marginTop: 29,
         paddingHorizontal: 20,
 
     },
@@ -189,21 +190,28 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius: 20,
         backgroundColor: '#B72245',
-        justifyContent: 'center'
+        justifyContent: 'center',
+           alignItems:"center",
+    elevation:2,
+        shadowOpacity:0.9,
+        shadowOffset:{width:0.9,height:0.9},
     },
     Burgtitle: {
         fontSize: 14,
         fontWeight: 'bold',
         fontFamily: 'Inter',
-        marginTop:8
+        marginTop:5,
     },
     pic: {
-        position: 'absolute',
-        left: -20
+  
+        width:90,
+        height:90,
+        borderRadius:20,
+        
     },
     Quantitycon: {
         flex: 1,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
 
     },
     actionRow: {

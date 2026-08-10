@@ -4,7 +4,9 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import Bggtop from '../components/Bggtop'
 import { useState } from 'react'
 
-const Doublecheese = () => {
+
+
+const Pizzapurchase = () => {
     const navigation = useNavigation()
     const route = useRoute()
     const { image, title, price } = route.params || {}
@@ -12,21 +14,21 @@ const Doublecheese = () => {
     const [quantity, setQuantity] = useState(1);
     const [selectedId, setSelectedId] = useState('1');
 
-    const Burg = [
+    const Pizza = [
         {
             id: '1',
-            image: require('../assets/images/pngwing 10.png'),
-            title: 'Veggie burger'
+            image: require('../assets/images/Pizza5.jpg'),
+            title: 'Margherita'
         },
         {
             id: '2',
-            image: require('../assets/images/pngwing 11.png'),
-            title: 'Chicken Sndwish\nBurger'
+            image: require('../assets/images/Pizza6.jpg'),
+            title: 'Pepperoni'
         },
         {
             id: '3',
-            image: require('../assets/images/pngwing 12.png'),
-            title: 'Melgo Special'
+            image: require('../assets/images/Pizza7.jpg'),
+            title: 'Quattro Stagioni'
         },
     ]
     const burg = ({ item }) => (
@@ -56,32 +58,30 @@ const Doublecheese = () => {
             <View style={styles.step1}>
                 <Text style={styles.title}>{title || 'Double Cheese'}{title ? '' : '\nBurger'}</Text>
                 <Text style={styles.title1}>Burger King | Deliver - {price || '#2500'}</Text>
-
-                {image ? <Image source={image} style={styles.foodImage} /> : null}
-
+                
+                    {image ? <Image source={image} style={styles.foodImage} /> : null}
+                
             </View>
-            <View style={styles.Card1}>
 
+
+            <View style={styles.Card1}>
 
                 <Text style={styles.heading}>Description</Text>
                 <Text style={styles.description}>
-                    Enjoy the Burger King Double Cheeseburger: two flame-grilled beef
-                    patties layered with melted American cheese, topped with fresh lettuce,
-                    tomato, pickles, and creamy mayo, all nestled in a toasted sesame seed
-                    bun. It's a classic, deliciously satisfying burger experience.
+                    Enjoy our Signature Hand-Tossed Pizza: a crisp, golden-baked crust topped with rich, slow-simmered tomato sauce and loaded with melted mozzarella cheese. Finished with your favorite premium toppings and a touch of fresh herbs, every slice delivers a hot, cheesy, and deliciously satisfying experience
                 </Text>
 
                 <View>
                     <FlatList
-                        data={Burg}
+                        data={Pizza}
                         renderItem={burg}
                         keyExtractor={(item) => item.id}
                         horizontal
                         showsHorizontalScrollIndicator={false}
                     />
                 </View>
-                <View style={styles.Quantitycon}>
 
+                <View style={styles.Quantitycon}>
 
                     <View style={styles.actionRow}>
                         {/* Quantity Selector */}
@@ -118,7 +118,7 @@ const Doublecheese = () => {
     )
 }
 
-export default Doublecheese
+export default Pizzapurchase
 
 const styles = StyleSheet.create({
     container: {
@@ -148,11 +148,18 @@ const styles = StyleSheet.create({
         fontWeight: 'regular',
         color: '#fff'
     },
+//     foodCon: {
+// backgroundColor:'#FFFF',
+//         height:200,height:200,
+//         shadowOpacity: 0.9,
+//         shadowOffset: { width: 0.9, height: 0.9 }
+//     },
     foodImage: {
          borderRadius:20,
         marginTop: 10,
         width: 227,
-        height: 245
+        height: 245,
+
     },
     Card1: {
         height: "50%",
@@ -170,7 +177,6 @@ const styles = StyleSheet.create({
         fontSize: 26,
         fontWeight: 'bold',
         color: '#000000',
-       
     },
     description: {
         fontSize: 13,
@@ -180,7 +186,7 @@ const styles = StyleSheet.create({
         marginTop: 8
     },
     Burgcon: {
-        marginTop: 30,
+        marginTop: 22,
         paddingHorizontal: 20,
 
     },
@@ -189,21 +195,28 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius: 20,
         backgroundColor: '#B72245',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: "center",
+        elevation: 2,
+        shadowOpacity: 0.9,
+        shadowOffset: { width: 0.9, height: 0.9 },
     },
     Burgtitle: {
         fontSize: 14,
         fontWeight: 'bold',
         fontFamily: 'Inter',
-        marginTop:8
+        marginTop: 5,
     },
     pic: {
-        position: 'absolute',
-        left: -20
+
+        width: 90,
+        height: 90,
+        borderRadius: 20,
+
     },
     Quantitycon: {
         flex: 1,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
 
     },
     actionRow: {

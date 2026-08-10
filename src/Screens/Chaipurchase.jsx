@@ -1,10 +1,11 @@
+
 import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList } from 'react-native'
 import React from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import Bggtop from '../components/Bggtop'
 import { useState } from 'react'
 
-const Doublecheese = () => {
+const Chaipurchase = () => {
     const navigation = useNavigation()
     const route = useRoute()
     const { image, title, price } = route.params || {}
@@ -15,18 +16,18 @@ const Doublecheese = () => {
     const Burg = [
         {
             id: '1',
-            image: require('../assets/images/pngwing 10.png'),
-            title: 'Veggie burger'
+            image: require('../assets/images/Chai tang5.jpg'),
+            title: 'Margherita'
         },
         {
             id: '2',
-            image: require('../assets/images/pngwing 11.png'),
-            title: 'Chicken Sndwish\nBurger'
+            image: require('../assets/images/Chai tang6.jpg'),
+            title: 'Pepperoni'
         },
         {
             id: '3',
-            image: require('../assets/images/pngwing 12.png'),
-            title: 'Melgo Special'
+            image: require('../assets/images/Chai tang7.jpg'),
+            title: 'Quattro Stagioni'
         },
     ]
     const burg = ({ item }) => (
@@ -56,19 +57,17 @@ const Doublecheese = () => {
             <View style={styles.step1}>
                 <Text style={styles.title}>{title || 'Double Cheese'}{title ? '' : '\nBurger'}</Text>
                 <Text style={styles.title1}>Burger King | Deliver - {price || '#2500'}</Text>
-
-                {image ? <Image source={image} style={styles.foodImage} /> : null}
-
+                <View style={styles.foodCon}>
+                    {image ? <Image source={image} style={styles.foodImage} /> : null}
+                </View>
             </View>
-            <View style={styles.Card1}>
 
+
+            <View style={styles.Card1}>
 
                 <Text style={styles.heading}>Description</Text>
                 <Text style={styles.description}>
-                    Enjoy the Burger King Double Cheeseburger: two flame-grilled beef
-                    patties layered with melted American cheese, topped with fresh lettuce,
-                    tomato, pickles, and creamy mayo, all nestled in a toasted sesame seed
-                    bun. It's a classic, deliciously satisfying burger experience.
+                    Enjoy authentic Chia Taang: freshly brewed, aromatic tea steeped with warm, fragrant spices and creamy milk to create a rich, soulful blend. Balanced to perfection with a comforting, velvet-smooth finish, it’s a refreshing and deeply satisfying classic tea experience.
                 </Text>
 
                 <View>
@@ -80,8 +79,8 @@ const Doublecheese = () => {
                         showsHorizontalScrollIndicator={false}
                     />
                 </View>
-                <View style={styles.Quantitycon}>
 
+                <View style={styles.Quantitycon}>
 
                     <View style={styles.actionRow}>
                         {/* Quantity Selector */}
@@ -116,9 +115,10 @@ const Doublecheese = () => {
             </View>
         </View>
     )
+
 }
 
-export default Doublecheese
+export default Chaipurchase
 
 const styles = StyleSheet.create({
     container: {
@@ -148,9 +148,21 @@ const styles = StyleSheet.create({
         fontWeight: 'regular',
         color: '#fff'
     },
+    // foodCon: {
+    //     backgroundColor:'#FFF',
+    //     width: 245,
+    //     height: 270,
+    //     marginTop:10,
+    //     alignItems:'center',
+    //     justifyContent:'center',
+    //     borderRadius:20,
+    //     elevation: 2,
+    //     shadowOpacity: 0.9,
+    //     shadowOffset: { width: 0.9, height: 0.9 },
+    // },
     foodImage: {
-         borderRadius:20,
-        marginTop: 10,
+        marginTop:10,
+        borderRadius:20,
         width: 227,
         height: 245
     },
@@ -170,7 +182,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         fontWeight: 'bold',
         color: '#000000',
-       
+
     },
     description: {
         fontSize: 13,
@@ -180,7 +192,7 @@ const styles = StyleSheet.create({
         marginTop: 8
     },
     Burgcon: {
-        marginTop: 30,
+        marginTop: 29,
         paddingHorizontal: 20,
 
     },
@@ -189,21 +201,28 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius: 20,
         backgroundColor: '#B72245',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: "center",
+        elevation: 2,
+        shadowOpacity: 0.9,
+        shadowOffset: { width: 0.9, height: 0.9 },
     },
     Burgtitle: {
         fontSize: 14,
         fontWeight: 'bold',
         fontFamily: 'Inter',
-        marginTop:8
+        marginTop: 5,
     },
     pic: {
-        position: 'absolute',
-        left: -20
+
+        width: 90,
+        height: 90,
+        borderRadius: 20,
+
     },
     Quantitycon: {
         flex: 1,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
 
     },
     actionRow: {

@@ -78,7 +78,7 @@ const Dominospizza = () => {
              <Text style={styles.title2}>{item.title}</Text>
              <Image source={item.image} style={styles.pngwing} />
              <Text style={styles.title3}>{item.price}</Text>
-             <TouchableOpacity onPress={() => navigation.navigate('Doublecheese', { image: item.image, title: item.title, price: item.price })} activeOpacity={0.7} style={styles.step4}>
+             <TouchableOpacity onPress={() => navigation.navigate('Pizzapurchase', { image: item.image, title: item.title, price: item.price })} activeOpacity={0.7} style={styles.step4}>
                  <Image source={require('../assets/images/cross.png')} />
              </TouchableOpacity>
          </View>

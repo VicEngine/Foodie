@@ -5,13 +5,6 @@ import { useNavigation } from '@react-navigation/native'
 import Location from '../components/Location'
 import Back from '../components/Back'
 
-
-
-
-
-
-
-
 const Signup = () => {
     const navigation = useNavigation()
     const [phoneNumber, setPhoneNumber] = useState('')
